@@ -9,5 +9,8 @@ env/
 __pycache__/
 *.pyc
 
-# Fichiers PDF téléchargés
+# Fichiers PDF téléchargés 
 *.pdf
+
+# Données générées
+data/

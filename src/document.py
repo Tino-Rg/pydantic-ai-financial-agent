@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from urllib.parse import urlparse
 import requests
+import pymupdf4llm
 
 class PDFProcessor:
     def __init__(self, source: str):
@@ -52,24 +53,12 @@ class PDFProcessor:
         2. Extracts text from the PDF (e.g., using PyMuPDF / pymupdf4llm).
         3. Returns the extracted content.
         """
-        pass
 
-if __name__ == "__main__":
-    # 1. The URL provided in your assignment
-    test_url = "https://s206.q4cdn.com/479360582/files/doc_financials/2024/q4/2024q4-alphabet-earnings-release.pdf"
-    
-    # 2. Instantiate the class
-    processor = PDFProcessor(source=test_url)
-    
-    print(f"Testing URL detection: {processor._is_url()}")
-    
-    # 3. Test the download method
-    if processor._is_url():
-        print("Starting download...")
-        try:
-            saved_path = processor._download()
-            print(f"Success! The file was saved at: {saved_path}")
-        except Exception as e:
-            print(f"An error occurred during download: {e}")
-    else:
-        print("The provided source is not a valid URL.")
+        if self._is_url():
+            file_path = self._download()
+        else:
+            file_path = self.source
+            if not os.path.exists(file_path):
+                raise FileNotFoundError(f"The local file was not found: {file_path}")
+        
+        return pymupdf4llm.to_markdown(file_path)
