@@ -26,7 +26,7 @@ class FinancialExtractor:
         """
         self.agent = Agent(
             model=model_name,
-            model_settings={'temperature': 0.0}, # Limit creativity, useless to extract informations from a doc
+            model_settings={'temperature': 0.0}, # Limit creativity, useless to extract information from a doc
             output_type=FinancialReport,
             system_prompt=load_prompt("system_prompt.txt")
         )
