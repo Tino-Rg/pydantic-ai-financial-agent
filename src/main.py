@@ -1,5 +1,5 @@
 import os
-
+from pathlib import Path
 from src.agent import FinancialExtractor
 
 
@@ -26,12 +26,12 @@ def main():
     print("\n--- Data extracted successfully ---")
     
     # Prepare the output directory
-    output_dir = os.path.join("data", "output")
+    output_dir = Path("data/output")
     os.makedirs(output_dir, exist_ok=True)
     
     # Construct the output JSON filename based on the original PDF name
-    base_name = os.path.splitext(filename)[0]
-    json_filename = f"{base_name}_extracted.json"
+    json_filename = f"{Path(filename).stem}_extracted.json"
+    file_path = output_dir / json_filename
     
     file_path = os.path.join(output_dir, json_filename)
     

@@ -82,10 +82,10 @@ class PDFProcessor:
             FileNotFoundError: If the provided local file path does not exist.
         """
         if self._is_url():
-            file_path = self._download()
+            file_path = Path(self._download())
         else:
-            file_path = self.source
-            if not os.path.exists(file_path):
+            file_path = Path(self.source)
+            if not file_path.exists():
                 raise FileNotFoundError(f"The local file was not found: {file_path}")
         
         return pymupdf4llm.to_markdown(file_path)
