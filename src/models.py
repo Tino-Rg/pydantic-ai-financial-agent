@@ -33,7 +33,7 @@ class Revenues(BaseModel):
     distributions: Dict[str, int] = Field(
         description=(
             "Dictionary of consolidated revenues by segment. "
-            "RULE 1 (Key format): Strictly use 'snake_case' (e.g., 'google_services', 'intelligent_cloud'). "
+            "RULE 1 (Key format): Strictly use 'snake_case' "
             "RULE 2 (Depth): Extract ONLY the top-level operating segments. Do NOT include sub-segments or individual products. "
             "RULE 3 (Values): Amounts must be absolute values. Multiply by 1,000,000 if the document specifies figures are 'in millions'."
         )
